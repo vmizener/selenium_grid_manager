@@ -27,5 +27,5 @@ fi
 
 DOWNLOAD_LOCATION=${SELENIUM_GRID_JAR_LOCATION}/selenium-server-standalone-${RELEASE}.jar
 curl ${DOWNLOAD_URL} > ${DOWNLOAD_LOCATION}
-echo "Success!"
-echo "Downloaded to: ${DOWNLOAD_LOCATION}"
+>&2 echo "Success!"
+>&2 echo "Downloaded to: ${DOWNLOAD_LOCATION}"
