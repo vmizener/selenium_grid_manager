@@ -3,7 +3,7 @@ source config.env
 
 SELENIUM_GRID_JAR_DOWNLOAD_ROOT_URL=http://selenium-release.storage.googleapis.com
 
-if [[ ! $(echo $1 | grep -E '^\d+\.\d+\.\d+$') ]]; then
+if [[ ! $(echo $1 | grep -P '^\d+\.\d+\.\d+$') ]]; then
     >&2 echo "You must supply a version of selenium grid to get in the required format"
     >&2 echo "The format is '<Major version>.<Minor version>.<Release>'"
     >&2 echo "(e.g. '3.13.0')"
