@@ -19,7 +19,7 @@ else
         grid_node_port=${GRID_NODE_PORT_OPTIONS[${count}]}
         count=$((count+1))
         grid_node_logfile=$(printf ${GRID_NODE_LOGFILE_FORMAT} ${count})
-        java -jar ${SELENIUM_GRID_JAR_LOCATION}/selenium-server-standalone-${SELENIUM_SERVER_VERSION}.jar -role node -hub ${register_address} -port ${grid_node_port} &> ${grid_node_logfile} &
+        java -jar ${SELENIUM_GRID_JAR_LOCATION}/selenium-server-standalone-${SELENIUM_SERVER_VERSION}.jar -role node -hub ${register_address} -port ${grid_node_port} -timeout ${GRID_NODE_TIMEOUT} &> ${grid_node_logfile} &
         >&2 echo "Attached node ${count} to port ${grid_node_port} with logfile ${grid_node_logfile}"
     done
     hub_address=$(head ${GRID_HUB_LOGFILE} | grep -o 'http://[0-9a-z.:/]\+hub')
