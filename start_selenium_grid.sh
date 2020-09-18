@@ -17,6 +17,12 @@ else
     fi
     java -jar ${SELENIUM_GRID_JAR_LOCATION}/selenium-server-standalone-${SELENIUM_SERVER_VERSION}.jar -role hub -port ${GRID_HUB_PORT} &> ${GRID_HUB_LOGFILE} &
     sleep 3
+    errors=$(grep 'Error' ${GRID_HUB_LOGFILE})
+    if [[ ${errors} ]]; then
+        >&2 echo "Encountered error(s) when starting grid!"
+        >&2 echo "${errors}"
+        exit 1
+    fi
     >&2 echo "Started server versioned: ${SELENIUM_SERVER_VERSION}"
     register_address=$(head ${GRID_HUB_LOGFILE} | grep -o 'http://[0-9a-z.:/]\+register/')
     count=0
