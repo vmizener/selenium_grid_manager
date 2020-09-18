@@ -1,6 +1,11 @@
 #!/bin/bash
 source config.env
 
+if ! $(command -v java &> /dev/null); then
+    >&2 echo "This script relies on java!  Install it first."
+    exit 1
+fi
+
 if [[ ! -f ${SELENIUM_GRID_JAR_LOCATION}/selenium-server-standalone-${SELENIUM_SERVER_VERSION}.jar ]]; then
     >&2 echo "Couldn't find server versioned: ${SELENIUM_SERVER_VERSION}"
     >&2 echo "Try running the get_selenium_grid.sh script to download this version"

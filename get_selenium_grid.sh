@@ -3,7 +3,7 @@ source config.env
 
 SELENIUM_GRID_JAR_DOWNLOAD_ROOT_URL=http://selenium-release.storage.googleapis.com
 
-if [[ ! $(which curl &> /dev/null) ]]; then
+if ! $(command -v curl &> /dev/null); then
     >&2 echo "This script relies on cURL!  Install it first."
     exit 1
 fi
